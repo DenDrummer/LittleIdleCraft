@@ -52,7 +52,7 @@ namespace LIC
                         //GetChildItems();
                         //break;
                     case 5:
-                        Console.WriteLine("Coming soon!");
+                        ComingSoon();
                         break;
                     case 0:
                         quit = true;
@@ -130,21 +130,61 @@ namespace LIC
         {
             bool validInput = false;
             string searchType;
+            string itemName = Console.ReadLine();
             while (!validInput)
             {
                 Console.WriteLine("Search by id or name?");
+                Console.WriteLine("(You can type cancel any time to cancel your search)");
                 searchType = Console.ReadLine();
+                Console.WriteLine();
+
+                Console.WriteLine("What item would you like to know more about?");
                 switch (searchType)
                 {
+                    case "cancel":
+                        return "cancel";
+                    case "name":
+                        itemName = AskItemByName();
+                        break;
+                    case "id":
+                        itemName = AskItemById();
+                        break;
                     default:
+                        Console.WriteLine("Invalid input!");
                         break;
                 }
+                Console.WriteLine();
             }
-
-            Console.WriteLine("What item would you like to know more about?");
-            Console.WriteLine("(You can type cancel to cancel your search)");
-            string itemName = Console.ReadLine();
             return itemName;
+        }
+
+        private static string AskItemByName()
+        {
+            string itemName;
+            Console.Write("Name => ");
+            itemName = Console.ReadLine();
+            return itemName;
+        }
+
+        private static string AskItemById()
+        {
+            string itemName;
+            int searchId = 0;
+            try
+            {
+                searchId = int.Parse(Console.ReadLine());
+            }
+            catch(FormatException fe)
+            {
+
+            }
+            itemName = ctx.Items.ToList().Find(i => i.Id == searchId).Name;
+            return itemName;
+        }
+
+        private static void ComingSoon()
+        {
+            Console.WriteLine("Coming Soon!");
         }
 
         private static void WriteCrafters()
@@ -154,8 +194,11 @@ namespace LIC
             Console.WriteLine();
             foreach (Crafter c in ctx.Crafters.ToList())
             {
-                Console.WriteLine(c.ToString());
-                Console.WriteLine();
+                if (c.Researched)
+                {
+                    Console.WriteLine(c.ToString());
+                    Console.WriteLine();
+                }
             }
             return;
         }
@@ -167,8 +210,11 @@ namespace LIC
             Console.WriteLine();
             foreach (Item i in ctx.Items.ToList())
             {
-                Console.WriteLine(i.ToString());
-                Console.WriteLine();
+                if (i.Researched)
+                {
+                    Console.WriteLine(i.ToString());
+                    Console.WriteLine();
+                }
             }
             return;
         }
