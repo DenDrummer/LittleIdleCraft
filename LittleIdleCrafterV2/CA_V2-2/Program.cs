@@ -19,6 +19,7 @@ namespace LIC
             {
                 ShowMenu();
             }
+            Console.Write("<press any key to exit>");
             Console.ReadKey();
         }
 

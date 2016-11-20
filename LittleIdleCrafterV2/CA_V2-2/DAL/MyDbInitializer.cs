@@ -63,7 +63,7 @@ namespace LIC
             Item water = newItem("Water", true);
             ctx.Items.Add(water);
 
-            Crafter waterCrafter = newCrafter(fire, researched: true);
+            Crafter waterCrafter = newCrafter(water, researched: true);
             ctx.Crafters.Add(waterCrafter);
             #endregion Water
 
