@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace LIC
 {
@@ -73,7 +74,7 @@ namespace LIC
 
         private static void GetChildItems()
         {
-            Console.WriteLine();
+
         }
 
         private static void GetParentItems()
@@ -131,7 +132,7 @@ namespace LIC
         {
             bool validInput = false;
             string searchType;
-            string itemName = Console.ReadLine();
+            string itemName;
             while (!validInput)
             {
                 Console.WriteLine("Search by id or name?");
@@ -145,18 +146,16 @@ namespace LIC
                     case "cancel":
                         return "cancel";
                     case "name":
-                        itemName = AskItemByName();
-                        break;
+                        return AskItemByName();
                     case "id":
-                        itemName = AskItemById();
-                        break;
+                        return AskItemById();
                     default:
                         Console.WriteLine("Invalid input!");
                         break;
                 }
                 Console.WriteLine();
             }
-            return itemName;
+            return "Something went wrong D:";
         }
 
         private static string AskItemByName()
@@ -169,15 +168,21 @@ namespace LIC
 
         private static string AskItemById()
         {
+            Console.Write("Id => ");
             string itemName;
             int searchId = 0;
-            try
+            string input = Console.ReadLine();
+            if (input.Equals("cancel"))
             {
-                searchId = int.Parse(Console.ReadLine());
+                return input;
             }
-            catch(FormatException fe)
+            else if(Regex.IsMatch(input,"[0-9]{1,}"))
             {
-
+                searchId = int.Parse(input);
+            }
+            else
+            {
+                Console.WriteLine("Invalid input");
             }
             itemName = ctx.Items.ToList().Find(i => i.Id == searchId).Name;
             return itemName;
