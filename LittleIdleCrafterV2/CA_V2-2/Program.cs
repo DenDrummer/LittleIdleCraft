@@ -60,21 +60,21 @@ namespace LIC
                         quit = true;
                         return;
                     default:
-                        Console.WriteLine("Invalid input");
+                        InvalidInput();
                         break;
                 }
                 Console.WriteLine();
             }
             catch(FormatException fe)
             {
-                Console.WriteLine("Invalid input");
+                InvalidInput();
                 Console.WriteLine();
             }
         }
 
         private static void GetChildItems()
         {
-
+            string itemName = AskItemName();
         }
 
         private static void GetParentItems()
@@ -132,7 +132,6 @@ namespace LIC
         {
             bool validInput = false;
             string searchType;
-            string itemName;
             while (!validInput)
             {
                 Console.WriteLine("Search by id or name?");
@@ -140,17 +139,18 @@ namespace LIC
                 searchType = Console.ReadLine();
                 Console.WriteLine();
 
-                Console.WriteLine("What item would you like to know more about?");
                 switch (searchType)
                 {
                     case "cancel":
                         return "cancel";
                     case "name":
+                        Console.WriteLine("What item would you like to know more about?");
                         return AskItemByName();
                     case "id":
+                        Console.WriteLine("What item would you like to know more about?");
                         return AskItemById();
                     default:
-                        Console.WriteLine("Invalid input!");
+                        InvalidInput();
                         break;
                 }
                 Console.WriteLine();
@@ -169,7 +169,6 @@ namespace LIC
         private static string AskItemById()
         {
             Console.Write("Id => ");
-            string itemName;
             int searchId = 0;
             string input = Console.ReadLine();
             if (input.Equals("cancel"))
@@ -182,16 +181,25 @@ namespace LIC
             }
             else
             {
-                Console.WriteLine("Invalid input");
+                InvalidInput();
+                return "cancel";
             }
-            itemName = ctx.Items.ToList().Find(i => i.Id == searchId).Name;
-            return itemName;
+            if(ctx.Items.ToList().Find(i => i.Id == searchId) != null)
+            {
+                return ctx.Items.ToList().Find(i => i.Id == searchId).Name;
+            }
+            else
+            {
+                InvalidInput("invalid Id");
+                return "cancel";
+            }
         }
 
+        private static void InvalidInput(string extraInfo = "") 
+            => Console.WriteLine($"Invalid input! {(extraInfo.Equals("") ? "" : $"({extraInfo})")}");
+
         private static void ComingSoon()
-        {
-            Console.WriteLine("Coming Soon!");
-        }
+            => Console.WriteLine("Coming Soon!");
 
         private static void WriteCrafters()
         {

@@ -93,6 +93,16 @@ namespace LIC
 
             NextId();
 
+            #region Mud
+            Item mud = newItem("Mud");
+            ctx.Items.Add(lava);
+
+            Crafter mudCrafter = newCrafter(mud, mom: earth, dad: water);
+            ctx.Crafters.Add(lavaCrafter);
+            #endregion Mud
+
+            NextId();
+
             #region Steam
             Item steam = newItem("Steam");
             ctx.Items.Add(steam);
@@ -128,6 +138,16 @@ namespace LIC
             Crafter metalCrafter = newCrafter(metal, mom: fire, dad: stone);
             ctx.Crafters.Add(metalCrafter);
             #endregion Metal
+
+            NextId();
+
+            #region Sand
+            Item sand = newItem("Sand");
+            ctx.Items.Add(steam);
+
+            Crafter sandCrafter = newCrafter(sand, mom: air, dad: stone);
+            ctx.Crafters.Add(sandCrafter);
+            #endregion Sand
 
             #endregion Tier 4
 
