@@ -51,9 +51,10 @@ namespace LIC
                         GetParentItems();
                         break;
                     case 4:
-                        //GetChildItems();
-                        //break;
+                    //GetChildItems();
+                    //break;
                     case 5:
+                        //Research();
                         ComingSoon();
                         break;
                     case 0:
@@ -72,9 +73,21 @@ namespace LIC
             }
         }
 
+        private static void Research()
+        {
+            Console.WriteLine();
+        }
+
         private static void GetChildItems()
         {
             string itemName = AskItemName();
+            Console.WriteLine();
+            if (itemName.Equals("cancel"))
+            {
+                Console.WriteLine("Search cancelled.");
+                Console.WriteLine();
+                return;
+            }
         }
 
         private static void GetParentItems()
@@ -87,9 +100,13 @@ namespace LIC
                 Console.WriteLine();
                 return;
             }
+            else if (itemName.Equals("derp"))
+            {
+                Console.WriteLine("I just don't know what went wrong 9_6");
+            }
             else
             {
-                Crafter crafter = ctx.Crafters.ToList().Find(c => c.Kid.Name.Equals(itemName));
+                Crafter crafter = ctx.Crafters.ToList().Find(c => c.Kid.Name.ToLower().Equals(itemName.ToLower()));
                 if (crafter != null)
                 {
                     if (crafter.Researched)
@@ -168,31 +185,37 @@ namespace LIC
 
         private static string AskItemById()
         {
-            Console.Write("Id => ");
             int searchId = 0;
             string input = Console.ReadLine();
-            if (input.Equals("cancel"))
+            bool validNumber = false;
+            while (!validNumber)
             {
-                return input;
+                Console.Write("Id => ");
+                if (input.Equals("cancel"))
+                {
+                    return input;
+                }
+                else if (Regex.IsMatch(input, "[0-9]{1,}"))
+                {
+                    searchId = int.Parse(input);
+                    validNumber = true;
+                }
+                else
+                {
+                    InvalidInput($"{input} is not a valid number");
+                    Console.WriteLine();
+                }
+                if (ctx.Items.ToList().Find(i => i.Id == searchId) != null)
+                {
+                    return ctx.Items.ToList().Find(i => i.Id == searchId).Name;
+                }
+                else
+                {
+                    InvalidInput("invalid Id");
+                    return "cancel";
+                }
             }
-            else if(Regex.IsMatch(input,"[0-9]{1,}"))
-            {
-                searchId = int.Parse(input);
-            }
-            else
-            {
-                InvalidInput();
-                return "cancel";
-            }
-            if(ctx.Items.ToList().Find(i => i.Id == searchId) != null)
-            {
-                return ctx.Items.ToList().Find(i => i.Id == searchId).Name;
-            }
-            else
-            {
-                InvalidInput("invalid Id");
-                return "cancel";
-            }
+            return "derp";
         }
 
         private static void InvalidInput(string extraInfo = "") 
