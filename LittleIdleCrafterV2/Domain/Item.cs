@@ -18,15 +18,6 @@ namespace LIC.BL.Domain
         [Required]
         public bool Researched { get; set; }
 
-        public Item(int id, string name, byte tier, double baseWorth = 1, double count = 0, bool researched = false)
-        {
-            Id = id;
-            Name = name;
-            BaseWorth = baseWorth;
-            Count = count;
-            Tier = tier;
-            Researched = researched;
-        }
         public Item()
         {
         }

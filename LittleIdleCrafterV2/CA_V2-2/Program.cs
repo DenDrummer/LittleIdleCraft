@@ -94,15 +94,16 @@ namespace LIC
         {
             string itemName = AskItemName();
             Console.WriteLine();
-            if (itemName.Equals("cancel"))
+            if (itemName.Equals("!cancel!"))
             {
                 Console.WriteLine("Search cancelled.");
                 Console.WriteLine();
                 return;
             }
-            else if (itemName.Equals("derp"))
+            else if (itemName.Equals("!derp!"))
             {
                 Console.WriteLine("I just don't know what went wrong 9_6");
+                Console.WriteLine();
             }
             else
             {
@@ -159,7 +160,7 @@ namespace LIC
                 switch (searchType)
                 {
                     case "cancel":
-                        return "cancel";
+                        return "!cancel!";
                     case "name":
                         Console.WriteLine("What item would you like to know more about?");
                         return AskItemByName();
@@ -172,7 +173,7 @@ namespace LIC
                 }
                 Console.WriteLine();
             }
-            return "Something went wrong D:";
+            return "!derp!";
         }
 
         private static string AskItemByName()
@@ -180,7 +181,14 @@ namespace LIC
             string itemName;
             Console.Write("Name => ");
             itemName = Console.ReadLine();
-            return itemName;
+            if (itemName.Equals("cancel"))
+            {
+                return "!cancel!";
+            }
+            else
+            {
+                return itemName;
+            }
         }
 
         private static string AskItemById()
@@ -193,7 +201,7 @@ namespace LIC
                 Console.Write("Id => ");
                 if (input.Equals("cancel"))
                 {
-                    return input;
+                    return "!cancel!";
                 }
                 else if (Regex.IsMatch(input, "[0-9]{1,}"))
                 {
@@ -215,7 +223,7 @@ namespace LIC
                     return "cancel";
                 }
             }
-            return "derp";
+            return "!derp!";
         }
 
         private static void InvalidInput(string extraInfo = "") 
