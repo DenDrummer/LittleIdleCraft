@@ -1,9 +1,5 @@
 ﻿using LIC.BL.Domain;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LIC.BL
 {
@@ -13,6 +9,8 @@ namespace LIC.BL
         Item GetItem(int id);
         int FindItem(string name);
         Item ResearchItem(int id1, int id2);
+
+        bool IsResearched(int id);
 
         IEnumerable<Item> GetParents(int id);
         IEnumerable<Item> GetChildren(int id);

@@ -194,11 +194,11 @@ namespace LIC
         private static string AskItemById()
         {
             int searchId = 0;
-            string input = Console.ReadLine();
             bool validNumber = false;
             while (!validNumber)
             {
                 Console.Write("Id => ");
+                string input = Console.ReadLine();
                 if (input.Equals("cancel"))
                 {
                     return "!cancel!";
@@ -210,7 +210,7 @@ namespace LIC
                 }
                 else
                 {
-                    InvalidInput($"{input} is not a valid number");
+                    InvalidInput($"{input} is not a number");
                     Console.WriteLine();
                 }
                 if (ctx.Items.ToList().Find(i => i.Id == searchId) != null)

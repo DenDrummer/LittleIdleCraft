@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LittleIdleCraftDbContext.cs" />
+    <Compile Include="LittleIdleCraftDbInitializer.cs" />
+    <Compile Include="LittleIdleCrafterDbConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
