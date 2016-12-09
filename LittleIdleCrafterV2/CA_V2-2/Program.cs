@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// This project will be deleted in a future version
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
