@@ -29,14 +29,46 @@ namespace LIC.UI.CA
         private static void ShowMenu()
         {
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("*1) See all items*");
-            Console.WriteLine("*2) See all crafters*");
+            Console.WriteLine("*1) See all items or crafters*");
+            Console.WriteLine("*2) Open Research menu*");
             Console.WriteLine("*3) Find required items for item*");
             Console.WriteLine("*4) Find items an item is required for*");
-            Console.WriteLine("*5) Open Research menu*");
             Console.WriteLine(" 0) Quit");
             Console.Write("Choice -> ");
             int choice;
+            try
+            {
+                choice = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                switch (choice)
+                {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                        ComingSoon();
+                        break;
+                    case 0:
+                        quit = true;
+                        return;
+                    default:
+                        InvalidInput();
+                        break;
+                }
+                Console.WriteLine();
+            }
+            catch (FormatException fe)
+            {
+                InvalidInput();
+                Console.WriteLine();
+            }
         }
+
+        private static void InvalidInput(string extraInfo = "")
+            => Console.WriteLine($"Invalid input! {(extraInfo.Equals("") ? "" : $"({extraInfo})")}");
+
+        private static void ComingSoon()
+            => Console.WriteLine("Coming Soon!");
     }
 }

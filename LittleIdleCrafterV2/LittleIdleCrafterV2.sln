@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI-CA", "UI-CA\UI-CA.csproj", "{2032A12E-1299-4EA9-AED0-D72E7C5D1282}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI-MVC", "UI-MVC\UI-MVC.csproj", "{9BD0B594-1C04-47B8-A4EA-0A3CA1824245}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2032A12E-1299-4EA9-AED0-D72E7C5D1282}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2032A12E-1299-4EA9-AED0-D72E7C5D1282}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2032A12E-1299-4EA9-AED0-D72E7C5D1282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD0B594-1C04-47B8-A4EA-0A3CA1824245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD0B594-1C04-47B8-A4EA-0A3CA1824245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD0B594-1C04-47B8-A4EA-0A3CA1824245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD0B594-1C04-47B8-A4EA-0A3CA1824245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
